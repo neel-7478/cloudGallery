@@ -17,18 +17,22 @@ const Images = () => {
   }, [])
   return (
     <div>
-      {
-       !docs ? "":docs.map((item) => {
-          return (
-            <div className='container' key={item._id}>
-            <div className='card'>
-            <img src={`http://localhost:5000/file/${item.filename}`} alt="" />
-            </div>
-            </div>
-          )
-        })
-      }
-    </div>
+      <div className='container'>
+        <div className='row'>
+          {
+            !docs ? "" : docs.map((item) => {
+              return (
+                <div className='col-md-4'>
+                  <div className="card" style={{ width: "30rem",marginTop:"10px"}}>
+                    <img src={`http://localhost:5000/file/${item.filename}`} className="card-img-top" alt="..." />
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    </div >
   )
 }
 
