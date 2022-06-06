@@ -12,7 +12,7 @@ const Images = () => {
     }
     axios.get(url, config).then((response) => {
       setDocs(response.data)
-      console.log(response.data)
+      // console.log(response.data)
     });
   }, [])
   return (
@@ -20,11 +20,11 @@ const Images = () => {
       <div className='container'>
         <div className='row'>
           {
-            !docs ? "" : docs.map((item) => {
+            !docs ? " Nothing" : docs.map((item) => {
               return (
-                <div className='col-md-4'>
-                  <div className="card" style={{ width: "30rem",marginTop:"10px"}}>
-                    <img src={`http://localhost:5000/file/${item.filename}`} className="card-img-top" alt="..." />
+                <div className='col-md-4' key={item._id}>
+                  <div className="card" style={{ width: "30rem", marginTop: "10px" }}>
+                    <img src={`http://localhost:5000/file/${item.filename}`} className="card-img-top" alt="img" />
                   </div>
                 </div>
               )
