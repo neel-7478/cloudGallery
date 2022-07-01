@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 const Images = () => {
-  const [docs, setDocs] = useState([]);
+  const [docs, setDocs] = useState(null);
   useEffect(() => {
     const url = "http://localhost:5000/"
     const config = {
@@ -11,8 +11,7 @@ const Images = () => {
       }
     }
     axios.get(url, config).then((response) => {
-      setDocs(response.data)
-      // console.log(response.data)
+      setDocs(response.data);
     });
   }, [])
   return (
@@ -20,15 +19,16 @@ const Images = () => {
       <div className='container'>
         <div className='row'>
           {
-            !docs ? " Nothing" : docs.map((item) => {
+            docs ? docs.map((item) => {
               return (
                 <div className='col-md-4' key={item._id}>
                   <div className="card" style={{ width: "30rem", marginTop: "10px" }}>
-                    <img src={`http://localhost:5000/file/${item.filename}`} className="card-img-top" alt="img" />
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'absolute', right: '0' }} />
+                    <img src={`http://localhost:5000/file/${item.filename}`} alt="img" />
                   </div>
                 </div>
               )
-            })
+            }) : "Nothing"
           }
         </div>
       </div>
